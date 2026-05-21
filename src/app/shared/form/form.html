@@ -26,27 +26,27 @@
   <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200">
     <table class="w-full text-left border-collapse">
       <thead class="bg-slate-800 text-slate-100">
+        
         <tr>
           <th class="p-4 font-semibold uppercase text-sm">ID</th>
           <th class="p-4 font-semibold uppercase text-sm">Nombre</th>
           <th class="p-4 font-semibold uppercase text-sm">Email</th>
           <th class="p-4 font-semibold uppercase text-sm">Teléfono</th>
         </tr>
+       
       </thead>
       <tbody>
-       
+       @for (usuario of listaUsuarios() ; track usuario.id) {
           <tr class="border-b border-slate-100 hover:bg-indigo-50 transition-colors">
-            <td class="p-4 text-slate-500 font-mono text-xs"></td>
-            <td class="p-4 text-slate-800 font-medium"></td>
-            <td class="p-4 text-slate-600"></td>
-            <td class="p-4 text-slate-600"></td>
+            <td class="p-4 text-slate-500 font-mono text-xs">{{usuario.id}}</td>
+            <td class="p-4 text-slate-800 font-medium">{{usuario.nombre}}</td>
+            <td class="p-4 text-slate-600">{{usuario.email}}</td>
+            <td class="p-4 text-slate-600">{{usuario.telefono}}</td>
           </tr>
-          <tr>
-            <td colspan="4" class="p-8 text-center text-slate-400 italic">
-              Cargando usuarios desde la API...
-            </td>
-          </tr>
+            }
+           
       </tbody>
+       
     </table>
   </div>
 </div>

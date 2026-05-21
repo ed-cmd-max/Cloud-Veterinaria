@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Usuario } from '../models/usuario';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,4 +17,19 @@ export class UsuarioService {
     return this.http.post<Usuario>(this.API_USARIOS, usuario);
   }
   
+  //GET
+ getUsuarios(): Observable<Usuario[]> {
+  return this.http
+    .get<{ [key: string]: Usuario }>(this.API_USARIOS)
+    .pipe(
+      map(res => {
+        if (!res) return [];
+
+        return Object.keys(res).map(id => ({
+          ...res[id],
+          id: id
+        }));
+      })
+    );
+}
 }

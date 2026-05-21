@@ -20,6 +20,12 @@ export class Form {
   }
 
   listaUsuarios = signal<Usuario[]>([]);
+
+    ngOnInit(): void {
+    this.usuarioServicio.getUsuarios().subscribe(users => {
+      this.listaUsuarios.set(users);
+    });
+  }
   registrar(){
     this.usuarioServicio.postUsuarios(this.nuevoUsuario).subscribe(
       user =>{
@@ -29,4 +35,6 @@ export class Form {
       }
     )
   }
+
+
 }
